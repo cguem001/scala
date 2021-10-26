@@ -53,7 +53,7 @@ object Functions extends App {
   println(greatingForKids("Carlos", 39))
 
 //  2. Factorial function 1 * 2 * 3 * 4 * .. * n
-  def factorial(n: Int): Int =  {
+  def factorial(n: Int): Int = {
     if (n <= 0) 1
     else n * factorial(n - 1)
   }
