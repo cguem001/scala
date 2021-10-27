@@ -1,5 +1,7 @@
 package lectures.part1basics
 
+import lectures.part1basics.Functions.{fibonacci, isPrime}
+
 import scala.annotation.tailrec
 
 object Recursion extends App {
@@ -52,18 +54,41 @@ object Recursion extends App {
    */
 
 //  1. Concatenate a string n times
-//  def stringConcatenationFunction(aString: String, n: Int): String = {
-//    def stringAccumulator(x: Int, accumulator: Int): String = {
-//      if (x <= 1) accumulator
-//      else stringAccumulator(x-1, aString * accumulator)
-//    }
-//  }
+  @tailrec
+  def stringConcatenation(aString: String, n: Int, accumulator: String): String =
+    if (n <= 0) accumulator
+    else stringConcatenation(aString, n -1, aString + accumulator)
 
-  def stringConcatenation(aString: String, n: Int, accumulator: String): String = {
-    if (n <=0) accumulator
-    else stringConcatenation(aString, n-1, aString + accumulator)
+
+//  2. IsPrime function tail recursive
+  def isPrime(n: Int): Boolean = {
+    @tailrec
+    def isPrimeUntil(t: Int, isStillPrime: Boolean): Boolean = {
+      if (!isStillPrime) false
+      else if (t <= 1) true
+      else isPrimeUntil(t-1, n % t != 0 && isStillPrime)
+    }
+    isPrimeUntil(n / 2, true)
+  }
+//  println(isPrime(629))
+
+//  3. Fibonacci function, tail recursive
+  def fibonacciTailRec(n: Int, accumulator: Int): Int =
+    if (n<=1) n
+    else fibonacciTailRec(n - 1 + n -2, accumulator * n-1)
+
+  def fibonacci(n: Int): Int = {
+    def fiboTailRec(i: Int, last: Int, nextToLast: Int): Int =
+      if (i >= n) last
+      else fiboTailRec(i + 1, last + nextToLast, last)
+    if (n <= 2) 1
+    else fiboTailRec(2, 1, 1)
+
   }
 
+  println(fibonacci(12))
+//  println(fibonacciTailRec(12, 1))
 
-  println(stringConcatenation("carlos", 7, " "))
+//  println(stringConcatenation("carlos", 7, " "))
+
 }
