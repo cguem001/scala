@@ -7,7 +7,7 @@ object ValuesVariablesTypes extends App {
   val x: Int = 42
   println(x)
 
-  //  VALS ARE IMMUTABLE
+  // VALS ARE IMMUTABLE
 
   // COMPILER can infer types
 
