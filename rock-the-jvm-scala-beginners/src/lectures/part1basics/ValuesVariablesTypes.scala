@@ -1,6 +1,6 @@
 package lectures.part1basics
 
-import com.sun.tools.corba.se.idl.constExpr.BooleanOr
+//import com.sun.tools.corba.se.idl.constExpr.BooleanOr
 
 object ValuesVariablesTypes extends App {
 
