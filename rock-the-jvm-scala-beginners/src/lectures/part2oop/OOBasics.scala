@@ -1,7 +1,5 @@
 package lectures.part2oop
 
-import java.io.Writer
-
 object OOBasics extends App {
   val person = new Person("Paco", 39) // to instantiate Person class
   println(person.age) // 39
@@ -35,10 +33,10 @@ class Person(name: String, val age: Int = 0) { // this is the constructor
   val x = 2 // this is a field, so it can be access it from object like person.x
   println(1 + 3)
 
-  def greet(name: String) = println(s"${this.name} says: Hi, $name")
+  def greet(name: String): Unit = println(s"${this.name} says: Hi, $name")
 
   // overloading. it means defining method with the same name but different signatures
-  def greet() = println(s"Hi, I am $name")
+  def greet(): Unit  = println(s"Hi, I am $name")
 
   // multiple constructors
   def this(name: String) = this(name, 0)
@@ -49,7 +47,7 @@ class Person(name: String, val age: Int = 0) { // this is the constructor
  Novel and a Writer class
 
  Writer: first name, surname, year of birth
-  - method fullname which returns the concatenation of fullname and lastName
+  - method full name which returns the concatenation of full name and lastName
 
  Novel: name, year of release, author (which is an instance of type writer)
   - authorAge, returns the age of the author at the year of release
@@ -67,26 +65,26 @@ class Person(name: String, val age: Int = 0) { // this is the constructor
  */
 
 class Writer(name: String, surname: String, val year: Int) {
-  def fullName = println(s"$name $surname")
+  def fullName: Unit  = println(s"$name $surname")
 }
 
 class Novel(name: String, yearOfRelease: Int, author: Writer) {
   val writer = new Writer("William","Shakespeare", 1500)
 
-  def authorAge = yearOfRelease - author.year
-  def isWrittenBy(author: Writer) = author == this.author
+  def authorAge: Int = yearOfRelease - author.year
+  def isWrittenBy(author: Writer): Boolean = author == this.author
   def copy(newYear: Int): Novel = new Novel(name, newYear, author)
 }
 
 class Counter(val valueInt : Int = 0) {
 //  def currentCount = valueInt
 //  def increase = new Counter(currentCount + 1)
-  def increase = {
+  def increase: Counter = {
     println("incrementing")
     new Counter(valueInt + 1) // immutability -> it means instances are fixed they cannot be modified inside
   //  if you wanted to modify the contents of an instance, you actually need to return a new instance
   }
-  def decrease = {
+  def decrease: Counter = {
     println("decrementing")
     new Counter(valueInt - 1)
   }
@@ -99,7 +97,7 @@ class Counter(val valueInt : Int = 0) {
     if(n <= 0) this
     else decrease.decrease(n+1)
 
-  def print = println(valueInt)
+  def print: Unit = println(valueInt)
 
 }
 
