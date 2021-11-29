@@ -54,7 +54,7 @@ it has Scala objects
 
 Scala companions
   - can access each other's private members
-  - Scala in more OO than Java!
+  - Scala in more Object Oriented than Java!
 
 Scala applications
   - def main(args: Array[String]): Unit
