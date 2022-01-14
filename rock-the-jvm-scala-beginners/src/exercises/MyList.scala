@@ -7,7 +7,7 @@ abstract class MyList {
   /*
   abstract class which describes a list of integers, implement your own collection
     head = first element of the list (will return an int)
-    tail = remainder of the list (will return the last
+    tail = remainder of the list (will return the last)
     isEmpty = is this list empty (returns a boolean)
     add(int) => new list with this element added
     toString => a string representation of the list print element
@@ -21,13 +21,14 @@ abstract class MyList {
   def isEmpty: Boolean
   def add(element: Int): MyList
   def printElements: String
+  // polymorphic call
   override def toString: String = "[" + printElements + "]"
 }
 
 object Empty extends MyList {
-  override def head: Int = throw NoSuchElementException
+  override def head: Int = throw new NoSuchElementException
 
-  override def tail: MyList = throw NoSuchElementException
+  override def tail: MyList = throw new NoSuchElementException
 
   override def isEmpty: Boolean = true
 
@@ -61,3 +62,19 @@ object ListTest extends App {
 
   println(list.toString)
 }
+
+/*
+SCALA OFFERS CLASS-BASED INHERITANCE
+  - access modifiers: private, protected, default(none = public)
+  - need to pass in constructor arguments to parent class
+
+DERIVED CLASSES CAN override MEMBERS OR METHODS
+
+REUSE PARENT FIELDS/METHODS WITH super
+
+PREVENT INHERITANCE WITH final AND sealed
+
+abstract classes
+traits
+Inheriting from a class and multiple traits
+*/

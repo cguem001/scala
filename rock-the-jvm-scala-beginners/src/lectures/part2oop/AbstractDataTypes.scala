@@ -14,7 +14,7 @@ object AbstractDataTypes extends App {
     def eat: Unit = println("crunch crunch")
   }
 
-  // traits: they're created by using the keyword trait and the name of the abstract class
+  // traits: they're abstract data types and they're created by using the keyword trait and the name of the abstract class
   trait Carnivore {
     def eat(animal: Animal): Unit
     val preferredMeal: String = "fresh meat"
@@ -55,5 +55,6 @@ object AbstractDataTypes extends App {
 traits = behaviour
 abstract = "thing"
 
+abstract class Animal describes animals but trait carnivore describes what they do
 so Animal describes animal ("thing") and Crocodile describes what it does
  */
