@@ -1,5 +1,9 @@
 package recfun
 
+import .pascal
+
+import scala.annotation.tailrec
+
 object RecFun extends RecFunInterface:
 
   def main(args: Array[String]): Unit =
@@ -13,15 +17,33 @@ object RecFun extends RecFunInterface:
    * Exercise 1
    */
   def pascal(c: Int, r: Int): Int =
-    if c == 0 then 1 else pascal(r + 1, c + r)
-//    if n == 0 then tail else factorialTail(n - 1, n * tail)
+    if c == 0 || c == r || r == 0 then 1
+    else if c == r -1 || c == 1 then r
+    else pascal(c, r - 1) + pascal(c - 1, r - 1)
 
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = 
+    def balance(chars: List[Char], accumulator: Int): Boolean = 
+      if chars.isEmpty then accumulator == 0
+      else if chars.head == ')' then balance(chars.tail, accumulator -1) && accumulator > 0
+      else if chars.head == '(' then balance(chars.tail, accumulator + 1)
+      else balance(chars.tail, accumulator)
+    balance(chars, 0)
+
+  
 
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, coins: List[Int]): Int =
+    def countChange(money: Int, coins: List[Int], accumulator: Int): Int =
+      if money < 0 then accumulator
+      else
+        if (coins.isEmpty)
+          if money == 0 then accumulator + 1 else accumulator
+        else countChange(money, coins.tail, accumulator) +
+          countChange(money - coins.head, coins, accumulator)
+
+    countChange(money, coins, 0)
